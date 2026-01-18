@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const cookieBanner = document.getElementById('cookieBanner');
+    const cookieClose = document.getElementById('cookieClose');
+
+    if (!localStorage.getItem('cookieClosed')) {
+        cookieBanner.style.display = 'flex';
+    }
+
+    cookieClose.addEventListener('click', function() {
+        cookieBanner.style.display = 'none';
+        localStorage.setItem('cookieClosed', 'true');
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
 
     const navLinks = document.querySelectorAll('.main-nav__link[data-section]');
     const footerNavLinks = document.querySelectorAll('.footer__nav-link');
