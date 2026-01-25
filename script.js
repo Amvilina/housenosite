@@ -527,28 +527,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     switchSection('disinfection', false);
 
-    function initScrollTop() {
-        const scrollBtn = document.querySelector('.scroll-top');
-        if (!scrollBtn) return;
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
-            }
-        });
-
-        scrollBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-
-    initScrollTop();
-
     function initMobileMenu() {
         const burgerBtn = document.querySelector('.burger-menu');
         const mobileMenu = document.getElementById('mobileMenu');
