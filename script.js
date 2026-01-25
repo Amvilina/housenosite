@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const sectionData = {
         disinfection: {
-            heroTitle: 'Профессиональная дезинфекция помещений в Москве и Подмосковье',
+            heroTitle: 'Обработка от клопов и тараканов в Москве и Подмосковье',
             sectionTitle: 'Прайс бытовые насекомые/дезинсекция',
             subtitle: 'базовая обработка'
         },
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             subtitle: 'комплексная защита от садовых вредителей'
         },
         mold: {
-            heroTitle: 'Устранение плесени и грибка в Москве и Подмосковье',
+            heroTitle: 'Уничтожение плесени и грибка в Москве и подмосковье',
             sectionTitle: 'Прайс плесень',
             subtitle: 'обработка от плесени и грибка'
         },
