@@ -554,7 +554,11 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 switchSection(hashToSection[hash], false);
             }, 100);
+        } else {
+            switchSection("disinfection", false);
         }
+    } else {
+        switchSection("disinfection", false);
     }
 
     function initMobileMenu() {
