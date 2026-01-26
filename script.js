@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             subtitle: 'комплексная защита от садовых вредителей'
         },
         mold: {
-            heroTitle: 'Уничтожение плесени и грибка в Москве и подмосковье',
+            heroTitle: 'Уничтожение плесени и грибка в Москве и Подмосковье',
             sectionTitle: 'Прайс плесень',
             subtitle: 'обработка от плесени и грибка'
         },
@@ -459,6 +459,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, 100);
         }
+
+        const hashMap = {
+            'disinfection': '#disinfection',
+            'rodents': '#rodents',
+            'country': '#country',
+            'mold': '#mold',
+            'smells': '#smells',
+            'all-services': '#all'
+        };
+
+        if (hashMap[section]) {
+            window.location.hash = hashMap[section];
+        }
     }
 
     navLinks.forEach(link => {
@@ -525,7 +538,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    switchSection('disinfection', false);
+    const hash = window.location.hash;
+
+    if (hash) {
+        const hashToSection = {
+            '#disinfection': 'disinfection',
+            '#rodents': 'rodents',
+            '#country': 'country',
+            '#mold': 'mold',
+            '#smells': 'smells',
+            '#all': 'all-services'
+        };
+
+        if (hashToSection[hash]) {
+            setTimeout(() => {
+                switchSection(hashToSection[hash], false);
+            }, 100);
+        }
+    }
 
     function initMobileMenu() {
         const burgerBtn = document.querySelector('.burger-menu');
