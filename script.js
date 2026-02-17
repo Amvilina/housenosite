@@ -63,9 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const serviceMapping = {
-        'клопов': 'insects',
-        'тараканов': 'insects',
-        'насекомых': 'insects',
+        'клопов': 'disinfection',
+        'тараканов': 'disinfection',
+        'плесени': 'mold',
         'клещей': 'insects',
         'комаров': 'insects',
         'ос': 'insects',
