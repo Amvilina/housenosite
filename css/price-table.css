@@ -1,0 +1,556 @@
+.price-table {
+    background-color: #ffffff;
+    padding: 0;
+    min-height: 295px;
+    overflow: hidden;
+}
+
+.price-table__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 50px;
+}
+
+.price-table__subtitle {
+    margin: 0 0 54px 0;
+    color: #cb1a1a;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.55;
+    text-transform: uppercase;
+    max-width: 462px;
+}
+
+.price-table__wrapper {
+    display: none;
+}
+
+.price-table__wrapper.active {
+    display: block;
+}
+
+.price-table__wrapper.price-table__wrapper--insects.active,
+.price-table__wrapper.price-table__wrapper--garden.active {
+    display: flex;
+    gap: 44px;
+}
+
+.price-table__wrapper.price-table__wrapper--four-columns.active {
+    display: flex;
+    gap: 20px;
+}
+
+/* Прайс: карточки одинаковой ширины, 3 или 4 в ряд; одна карточка — контент в 2 колонки */
+.price-table__wrapper--simple {
+    display: none;
+}
+
+.price-table__wrapper--simple.active {
+    display: grid;
+    gap: 24px;
+    max-width: 100%;
+}
+
+/* 3 блока — 3 в ряд */
+.price-table__wrapper--groups-3.active {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* 4 блока — 4 в ряд */
+.price-table__wrapper--groups-4.active {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* 1 блок — на всю ширину, содержимое в 2 колонки */
+.price-table__wrapper--groups-1.active {
+    grid-template-columns: 1fr;
+}
+
+@media (max-width: 1199px) {
+    .price-table__wrapper--groups-3.active {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .price-table__wrapper--groups-4.active {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 959px) {
+    .price-table__wrapper--groups-3.active,
+    .price-table__wrapper--groups-4.active,
+    .price-table__wrapper--groups-1.active {
+        grid-template-columns: 1fr;
+    }
+}
+
+.price-table__wrapper--simple .price-table__group--card {
+    background-color: rgba(229, 239, 244, 0.4);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 0;
+    min-width: 0;
+}
+
+/* Одна карточка: контент (строки) разбит на 2 колонки — только на широких экранах */
+.price-table__wrapper--groups-1 .price-table__group--card .price-table__rows {
+    column-count: 2;
+    column-gap: 24px;
+}
+
+.price-table__wrapper--groups-1 .price-table__group--card .price-table__row {
+    break-inside: avoid;
+}
+
+@media (max-width: 767px) {
+    .price-table__wrapper--groups-1 .price-table__group--card .price-table__rows {
+        column-count: 1;
+    }
+}
+
+/* Форма обратной связи — на всю ширину ниже блоков прайса */
+.price-table__wrapper--simple .callback-form {
+    grid-column: 1 / -1;
+    margin-top: 16px;
+}
+
+.price-table__wrapper--simple .price-table__group-title {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+}
+
+.price-table__wrapper--simple .price-table__subheader--two {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 10px 0;
+    margin-bottom: 8px;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(118, 143, 171, 0.25);
+    border-radius: 0;
+}
+
+.price-table__wrapper--simple .price-table__subheader--two span {
+    color: #768fab;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.price-table__wrapper--simple .price-table__row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 8px 0;
+    margin-bottom: 2px;
+    align-items: center;
+    min-height: 44px;
+}
+
+.price-table__wrapper--simple .price-table__row {
+    background-color: transparent;
+}
+
+.price-table__wrapper--simple .price-table__area {
+    font-size: 15px;
+}
+
+.price-table__wrapper--simple .price-table__price {
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.price-table__group {
+    margin-bottom: 50px;
+}
+
+.price-table__group-title {
+    margin: 0 0 30px 0;
+    color: #36507E;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.price-table__group-title--center {
+    text-align: center;
+}
+
+.price-table__column-title-sub {
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.price-table__column--center {
+    margin: 0 auto;
+}
+
+.price-table__group-row {
+    display: flex;
+    gap: 40px;
+}
+
+.price-table__wrapper--disinfection .price-table__group:last-child .price-table__group-row {
+    justify-content: center;
+}
+
+.price-table__wrapper--disinfection .price-table__group:last-child .price-table__column--small {
+    max-width: 280px;
+}
+
+.price-table__wrapper--disinfection .price-table__group:last-child .price-table__group-title {
+    text-align: center;
+}
+
+.price-table__column {
+    flex: 1;
+    max-width: 559px;
+}
+
+.price-table__column--small {
+    max-width: 280px;
+}
+
+.price-table__column--medium {
+    max-width: 560px;
+}
+
+.price-table__column-title {
+    margin: 0 0 20px 0;
+    color: #768fab;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-left: 20px;
+}
+
+.price-table__column-subtitle {
+    margin: 0 0 15px 0;
+    color: #768fab;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-left: 20px;
+}
+
+.price-table__subheader {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: rgba(229, 239, 244, 0.3);
+    border-radius: 10px;
+}
+
+.price-table__subheader span {
+    color: #768fab;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    align-items: center;
+}
+
+.price-table__subheader span:first-child {
+    text-align: left;
+    padding-top: 7px;
+}
+
+.price-table__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 51px;
+    padding: 0 43px;
+    margin-bottom: 3px;
+    background-color: rgba(229, 239, 244, 0.5);
+    border-radius: 10px;
+}
+
+.price-table__row--double {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    padding: 0 20px;
+}
+
+.price-table__column--small .price-table__row,
+.price-table__column--medium .price-table__row {
+    padding: 0 20px;
+}
+
+.price-table__area {
+    color: #768fab;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+    flex: 1;
+    padding-right: 10px;
+}
+
+.price-table__column--small .price-table__area,
+.price-table__column--medium .price-table__area {
+    font-size: 14px;
+}
+
+.price-table__price {
+    color: #36507E;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.55;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.price-table__column--small .price-table__price,
+.price-table__column--medium .price-table__price {
+    font-size: 14px;
+}
+
+.price-table__row--double .price-table__price {
+    text-align: center;
+}
+
+.price-table__wrapper[data-section="mold"] .price-table__group:nth-child(2) .price-table__group-row,
+.price-table__wrapper[data-section="mold"] .price-table__group:nth-child(3) .price-table__group-row {
+    justify-content: center;
+}
+
+.price-table__wrapper[data-section="mold"] .price-table__group:nth-child(2) .price-table__column--medium,
+.price-table__wrapper[data-section="mold"] .price-table__group:nth-child(3) .price-table__column--medium {
+    max-width: 600px;
+}
+
+.price-table__wrapper[data-section="mold"] .price-table__group:nth-child(2) .price-table__group-row {
+    justify-content: center;
+    gap: 40px;
+}
+
+.price-table__wrapper[data-section="mold"] .price-table__group:nth-child(2) .price-table__column--medium {
+    max-width: 560px;
+}
+
+.price-table__wrapper[data-section="mold"] .price-table__group-title {
+    text-align: center;
+}
+
+.price-table__wrapper[data-section="mold"] .price-table__subheader span:first-child {
+    padding-top: 0;
+}
+
+.price-table__subheader-type,
+.price-table__subheader-area {
+    text-align: left !important;
+    display: flex;
+    align-items: center;
+    transform: translateY(-3px);
+}
+
+.price-table__subheader-disinfection {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price-table__subheader-ozone {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price-table__column--full {
+    max-width: 100%;
+    width: 100%;
+}
+
+.price-table__subheader--additional {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+}
+
+.price-table__row--additional {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+}
+
+.price-table__subheader-service {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    transform: translateY(-3px);
+}
+
+.price-table__subheader-cost {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price-table__wrapper[data-section="rodents"] .price-table__group:last-child {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.price-table__wrapper[data-section="rodents"] .price-table__group:last-child .price-table__group-title {
+    text-align: center;
+}
+
+.price-table__group-section {
+    margin-bottom: 40px;
+}
+
+.price-table__section-subtitle {
+    text-align: center;
+    color: #768fab;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+}
+
+.price-table__column--large {
+    max-width: 800px;
+    width: 100%;
+}
+
+.price-table__subheader--triple {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding-left: 30px;
+}
+
+.price-table__row--triple {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.price-table__subheader-method {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price-table__wrapper[data-section="smells"] .price-table__group-row {
+    justify-content: center;
+}
+
+.price-table__wrapper[data-section="country"] .price-table__column-title {
+    color: #768fab;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.price-table__wrapper[data-section="country"] .price-table__column-title span {
+    display: block;
+    margin-top: 5px;
+    color: #768fab;
+    text-transform: none;
+}
+
+.price-table__row--modifier {
+    background-color: rgba(255, 193, 7, 0.1);
+}
+
+.price-table__row--modifier .price-table__price {
+    color: #cb1a1a;
+    font-weight: 700;
+}
+
+.price-table__notice {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: rgba(203, 26, 26, 0.05);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.price-table__notice-text {
+    margin: 0;
+    color: #cb1a1a;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.price-table__wrapper[data-section="country"] .price-table__group:nth-child(2) .price-table__group-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.price-table__wrapper[data-section="country"] .price-table__group:last-of-type .price-table__group-row {
+    justify-content: center;
+}
+
+.price-table__wrapper[data-section="country"] .price-table__group:last-of-type .price-table__group-title {
+    text-align: center;
+}
+
+.price-table__wrapper--all-services {
+    display: none;
+}
+
+.price-table__wrapper--all-services.active {
+    display: block;
+}
+
+.price-table__column--full-width {
+    max-width: 100%;
+    width: 100%;
+}
+
+.price-table__group-row--single {
+    justify-content: center;
+}
+
+.price-table__two-tables {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.price-table__half {
+    flex: 1;
+    max-width: 560px;
+}
+
+.price-table__half .price-table__row {
+    padding: 0 20px;
+}
+
+.price-table__wrapper--all-services .price-table__group {
+    margin-bottom: 60px;
+    border-bottom: 2px solid rgba(118, 143, 171, 0.1);
+    padding-bottom: 40px;
+}
+
+.price-table__wrapper--all-services .price-table__group:last-child {
+    border-bottom: none;
+}
+
+.price-table__wrapper--all-services .price-table__group-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #36507E;
+    font-size: 20px;
+}
+
+.price-table__wrapper--all-services .price-table__group-section {
+    margin-bottom: 40px;
+}
+
+.price-table__wrapper--all-services .price-table__section-subtitle {
+    text-align: center;
+    margin-bottom: 25px;
+}
+

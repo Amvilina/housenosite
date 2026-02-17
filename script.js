@@ -13,69 +13,86 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+    const priceTablesRoot = document.getElementById('price-tables-root');
+    if (priceTablesRoot && typeof window.renderAllPriceSections === 'function') {
+        window.renderAllPriceSections(priceTablesRoot);
+    }
 
     const navLinks = document.querySelectorAll('.main-nav__link[data-section]');
     const footerNavLinks = document.querySelectorAll('.footer__nav-link');
     const heroTitle = document.getElementById('hero-title');
     const sectionTitle = document.getElementById('section-title');
     const priceSubtitle = document.getElementById('price-subtitle');
-    const priceTableWrappers = document.querySelectorAll('.price-table__wrapper');
+    let priceTableWrappers = document.querySelectorAll('.price-table__wrapper');
+    if (priceTableWrappers.length === 0 && priceTablesRoot && typeof window.renderAllPriceSections === 'function') {
+        window.renderAllPriceSections(priceTablesRoot);
+        priceTableWrappers = document.querySelectorAll('.price-table__wrapper');
+    }
 
     const sectionData = {
         disinfection: {
-            heroTitle: 'Обработка от клопов и тараканов в Москве и Подмосковье',
-            sectionTitle: 'Прайс бытовые насекомые/дезинсекция',
-            subtitle: 'базовая обработка'
+            heroTitle: 'Дезинфекция в Москве и Подмосковье',
+            sectionTitle: 'Дезинфекция',
+            subtitle: 'дезинфекция'
+        },
+        insects: {
+            heroTitle: 'Обработка от насекомых в Москве и Подмосковье',
+            sectionTitle: 'Обработка от насекомых',
+            subtitle: 'от насекомых'
         },
         rodents: {
-            heroTitle: 'Профессиональная дератизация от грызунов в Москве и Подмосковье',
-            sectionTitle: 'Прайс грызуны/дератизация - раскладка отравы-приманки',
-            subtitle: 'уничтожение грызунов'
+            heroTitle: 'Обработка от грызунов в Москве и Подмосковье',
+            sectionTitle: 'Обработка от грызунов',
+            subtitle: 'от грызунов'
         },
-        country: {
-            heroTitle: 'Профессиональная обработка дачных участков в Москве и Подмосковье',
-            sectionTitle: 'Прайс дачные вредители',
-            subtitle: 'комплексная защита от садовых вредителей'
-        },
-        mold: {
-            heroTitle: 'Уничтожение плесени и грибка в Москве и Подмосковье',
-            sectionTitle: 'Прайс плесень',
-            subtitle: 'обработка от плесени и грибка'
+        plots: {
+            heroTitle: 'Обработка участков в Москве и Подмосковье',
+            sectionTitle: 'Обработка участков',
+            subtitle: 'участки'
         },
         smells: {
-            heroTitle: 'Устранение неприятных запахов в Москве и Подмосковье',
-            sectionTitle: 'Прайс запахи',
-            subtitle: 'профессиональная обработка'
+            heroTitle: 'Обработка от запахов в Москве и Подмосковье',
+            sectionTitle: 'Обработка от запахов',
+            subtitle: 'от запахов'
         },
-        'all-services': {
-            heroTitle: 'Полный прайс-лист на все услуги в Москве и Подмосковье',
-            sectionTitle: 'Все услуги и цены компании',
-            subtitle: 'выберите подходящую услугу'
+        mold: {
+            heroTitle: 'Обработка от плесени в Москве и Подмосковье',
+            sectionTitle: 'Обработка от плесени',
+            subtitle: 'от плесени'
         }
     };
 
     const serviceMapping = {
-        'клопов': 'disinfection',
-        'тараканов': 'disinfection',
-        'насекомых': 'disinfection',
-        'клещей': 'country',
-        'комаров': 'country',
-        'ос': 'country',
-        'тли': 'country'
+        'клопов': 'insects',
+        'тараканов': 'insects',
+        'насекомых': 'insects',
+        'клещей': 'insects',
+        'комаров': 'insects',
+        'ос': 'insects',
+        'тли': 'insects'
     };
 
 
 
     function mapFooterLinkToSection(href) {
+        if (!href) return null;
+        const path = href.replace(/^#/, '');
         const mappings = {
-            '/yslygiceni': 'all-services',
-            '/bakterii-virusi': 'disinfection',
-            '/dezinsekciya': 'disinfection',
-            '/deratizaciya': 'rodents',
-            '/dezodoraciya': 'smells',
-            '/uchastki': 'country'
+            'disinfection': 'disinfection',
+            'insects': 'insects',
+            'rodents': 'rodents',
+            'plots': 'plots',
+            'smells': 'smells',
+            'mold': 'mold',
+            'yslygiceni': 'disinfection',
+            'dezinfekciya': 'disinfection',
+            'dezinsekciya': 'insects',
+            'deratizaciya': 'rodents',
+            'uchastki': 'plots',
+            'dezodoraciya': 'smells',
+            'plesen': 'mold'
         };
-        return mappings[href];
+        return mappings[path] || null;
     }
 
     function adjustHeroFeatures() {
@@ -117,17 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function fixRodentsTitle() {
-        const titles = document.querySelectorAll('.price-table__group-title');
-        titles.forEach(title => {
-            if (title.textContent.includes('ДОПОЛНИТЕЛЬНЫЙ ПРАЙС 2021')) {
-                title.textContent = 'ДОПОЛНИТЕЛЬНЫЙ ПРАЙС ГРЫЗУНЫ/ДЕРАТИЗАЦИЯ';
-            }
-        });
-    }
-
     adjustHeroFeatures();
-    fixRodentsTitle();
 
     window.addEventListener('resize', () => {
         adjustHeroFeatures();
@@ -167,11 +174,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const section = activeWrapper.dataset.section;
             const sectionNames = {
                 'disinfection': 'Дезинфекция',
+                'insects': 'Насекомые',
                 'rodents': 'Грызуны',
-                'country': 'Дачные вредители',
-                'mold': 'Плесень',
+                'plots': 'Участки',
                 'smells': 'Запахи',
-                'all-services': 'Все услуги'
+                'mold': 'Плесень'
             };
             currentSection = sectionNames[section] || 'Неизвестный раздел';
         }
@@ -462,11 +469,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const hashMap = {
             'disinfection': '#disinfection',
+            'insects': '#insects',
             'rodents': '#rodents',
-            'country': '#country',
-            'mold': '#mold',
+            'plots': '#plots',
             'smells': '#smells',
-            'all-services': '#all'
+            'mold': '#mold'
         };
 
         if (hashMap[section]) {
@@ -543,11 +550,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (hash) {
         const hashToSection = {
             '#disinfection': 'disinfection',
+            '#insects': 'insects',
             '#rodents': 'rodents',
-            '#country': 'country',
-            '#mold': 'mold',
+            '#plots': 'plots',
             '#smells': 'smells',
-            '#all': 'all-services'
+            '#mold': 'mold'
         };
 
         if (hashToSection[hash]) {
@@ -555,10 +562,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 switchSection(hashToSection[hash], false);
             }, 100);
         } else {
-            switchSection("disinfection", false);
+            switchSection('disinfection', false);
         }
     } else {
-        switchSection("disinfection", false);
+        switchSection('disinfection', false);
     }
 
     function initMobileMenu() {
@@ -642,11 +649,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const section = activeSection.dataset.section;
                 const sectionNames = {
                     'disinfection': 'Дезинфекция',
+                    'insects': 'Насекомые',
                     'rodents': 'Грызуны',
-                    'country': 'Дачные вредители',
-                    'mold': 'Плесень',
+                    'plots': 'Участки',
                     'smells': 'Запахи',
-                    'all-services': 'Все услуги'
+                    'mold': 'Плесень'
                 };
                 sectionName = sectionNames[section] || section;
             }

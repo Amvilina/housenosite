@@ -1,0 +1,24 @@
+.section-title {
+    height: 85px;
+    background-color: #ffffff;
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.section-title__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title__heading {
+    margin: 0;
+    padding: 0;
+    color: #36507E;
+    font-size: 33px;
+    font-weight: 800;
+    line-height: 1.2;
+    max-width: 777px;
+}
+

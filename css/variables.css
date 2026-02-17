@@ -1,0 +1,14 @@
+/* Цвета и переменные темы */
+:root {
+    --color-primary: #36507E;
+    --color-accent: #cb1a1a;
+    --color-accent-hover: #a91616;
+    --color-text-muted: #768fab;
+    --color-bg-light: #e5eff4;
+    --color-bg-light-alpha: rgba(229, 239, 244, 0.5);
+    --color-white: #ffffff;
+    --color-nav-inactive: #b4c0ce;
+    --font-main: 'Manrope', Arial, sans-serif;
+    --container-max: 1200px;
+    --container-padding: 20px;
+}
