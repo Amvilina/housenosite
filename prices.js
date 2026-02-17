@@ -80,8 +80,17 @@
         var wrapper = document.createElement('div');
         wrapper.className = 'price-table__wrapper price-table__wrapper--simple price-table__wrapper--groups-' + data.groups.length;
         wrapper.setAttribute('data-section', sectionId);
-        for (var g = 0; g < data.groups.length; g++) {
-            wrapper.appendChild(renderTableGroup(data.groups[g]));
+        if (data.groups.length >= 2) {
+            var scrollWrap = document.createElement('div');
+            scrollWrap.className = 'price-table__scroll';
+            for (var g = 0; g < data.groups.length; g++) {
+                scrollWrap.appendChild(renderTableGroup(data.groups[g]));
+            }
+            wrapper.appendChild(scrollWrap);
+        } else {
+            for (var g = 0; g < data.groups.length; g++) {
+                wrapper.appendChild(renderTableGroup(data.groups[g]));
+            }
         }
         return wrapper;
     }

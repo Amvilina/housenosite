@@ -11,16 +11,6 @@
     padding: 0 20px 50px;
 }
 
-.price-table__subtitle {
-    margin: 0 0 54px 0;
-    color: #cb1a1a;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.55;
-    text-transform: uppercase;
-    max-width: 462px;
-}
-
 .price-table__wrapper {
     display: none;
 }
@@ -46,41 +36,113 @@
 }
 
 .price-table__wrapper--simple.active {
-    display: grid;
-    gap: 24px;
+    display: block;
     max-width: 100%;
 }
 
-/* 3 блока — 3 в ряд */
-.price-table__wrapper--groups-3.active {
+/* 2+ блоков: контейнер для карточек (сетка на десктопе, горизонтальный скролл на мобиле) */
+.price-table__wrapper--groups-3.active .price-table__scroll,
+.price-table__wrapper--groups-4.active .price-table__scroll {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
 }
 
-/* 4 блока — 4 в ряд */
-.price-table__wrapper--groups-4.active {
+.price-table__wrapper--groups-4.active .price-table__scroll {
     grid-template-columns: repeat(4, 1fr);
 }
 
-/* 1 блок — на всю ширину, содержимое в 2 колонки */
+/* 1 блок — на всю ширину */
 .price-table__wrapper--groups-1.active {
-    grid-template-columns: 1fr;
+    display: block;
 }
 
 @media (max-width: 1199px) {
-    .price-table__wrapper--groups-3.active {
+    .price-table__wrapper--groups-3.active .price-table__scroll {
         grid-template-columns: repeat(2, 1fr);
     }
-    .price-table__wrapper--groups-4.active {
+    .price-table__wrapper--groups-4.active .price-table__scroll {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Подсказка «листайте влево» только на маленьких экранах; на больших всегда скрыта */
+.price-table__scroll-hint {
+    display: none;
+}
+
+/* Маленький экран: горизонтальная прокрутка для 2+ блоков (только при ширине ≤639px) */
+@media (max-width: 639px) {
+    .price-table__wrapper--groups-3.active .price-table__scroll,
+    .price-table__wrapper--groups-4.active .price-table__scroll {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+        padding: 4px 20px 12px 0;
+        margin: 0;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .price-table__wrapper--groups-3.active .price-table__scroll::-webkit-scrollbar,
+    .price-table__wrapper--groups-4.active .price-table__scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .price-table__wrapper--groups-3.active .price-table__scroll .price-table__group--card,
+    .price-table__wrapper--groups-4.active .price-table__scroll .price-table__group--card {
+        flex: 0 0 85%;
+        min-width: 260px;
+        max-width: 320px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+    /* Подсказка «листайте влево» + мигающая стрелка */
+    .price-table__scroll-hint {
+        display: none;
+    }
+
+    .price-table__container:has(.price-table__wrapper.active .price-table__scroll) .price-table__scroll-hint,
+    .price-table__container--scroll-hint .price-table__scroll-hint {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 14px 0 0 0;
+        font-size: 14px;
+        color: #768fab;
+        font-weight: 500;
+    }
+
+    .price-table__scroll-hint-arrow {
+        display: inline-block;
+        font-size: 22px;
+        font-weight: 700;
+        color: #cb1a1a;
+        line-height: 1;
+        animation: price-arrow-pulse 1.2s ease-in-out infinite;
     }
 }
 
 @media (max-width: 959px) {
-    .price-table__wrapper--groups-3.active,
-    .price-table__wrapper--groups-4.active,
-    .price-table__wrapper--groups-1.active {
+    .price-table__wrapper--groups-3.active .price-table__scroll,
+    .price-table__wrapper--groups-4.active .price-table__scroll {
         grid-template-columns: 1fr;
     }
+    .price-table__wrapper--groups-1.active {
+        display: block;
+    }
+}
+
+@keyframes price-arrow-pulse {
+    0%, 100% { opacity: 1; transform: translateX(0); }
+    50% { opacity: 0.5; transform: translateX(4px); }
 }
 
 .price-table__wrapper--simple .price-table__group--card {

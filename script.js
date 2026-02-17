@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const footerNavLinks = document.querySelectorAll('.footer__nav-link');
     const heroTitle = document.getElementById('hero-title');
     const sectionTitle = document.getElementById('section-title');
-    const priceSubtitle = document.getElementById('price-subtitle');
     let priceTableWrappers = document.querySelectorAll('.price-table__wrapper');
     if (priceTableWrappers.length === 0 && priceTablesRoot && typeof window.renderAllPriceSections === 'function') {
         window.renderAllPriceSections(priceTablesRoot);
@@ -32,33 +31,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const sectionData = {
         disinfection: {
             heroTitle: 'Дезинфекция в Москве и Подмосковье',
-            sectionTitle: 'Дезинфекция',
-            subtitle: 'дезинфекция'
+            sectionTitle: 'Дезинфекция'
         },
         insects: {
             heroTitle: 'Обработка от насекомых в Москве и Подмосковье',
-            sectionTitle: 'Обработка от насекомых',
-            subtitle: 'от насекомых'
+            sectionTitle: 'Обработка от насекомых'
         },
         rodents: {
             heroTitle: 'Обработка от грызунов в Москве и Подмосковье',
-            sectionTitle: 'Обработка от грызунов',
-            subtitle: 'от грызунов'
+            sectionTitle: 'Обработка от грызунов'
         },
         plots: {
             heroTitle: 'Обработка участков в Москве и Подмосковье',
-            sectionTitle: 'Обработка участков',
-            subtitle: 'участки'
+            sectionTitle: 'Обработка участков'
         },
         smells: {
             heroTitle: 'Обработка от запахов в Москве и Подмосковье',
-            sectionTitle: 'Обработка от запахов',
-            subtitle: 'от запахов'
+            sectionTitle: 'Обработка от запахов'
         },
         mold: {
             heroTitle: 'Обработка от плесени в Москве и Подмосковье',
-            sectionTitle: 'Обработка от плесени',
-            subtitle: 'от плесени'
+            sectionTitle: 'Обработка от плесени'
         }
     };
 
@@ -437,7 +430,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (sectionData[section]) {
             heroTitle.textContent = sectionData[section].heroTitle;
             sectionTitle.textContent = sectionData[section].sectionTitle;
-            priceSubtitle.textContent = sectionData[section].subtitle;
         }
 
         priceTableWrappers.forEach(wrapper => {
@@ -447,6 +439,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 wrapper.classList.remove('active');
             }
         });
+
+        const priceContainer = priceTablesRoot && priceTablesRoot.closest('.price-table__container');
+        if (priceContainer) {
+            const activeWrapper = document.querySelector('.price-table__wrapper.active');
+            if (activeWrapper && activeWrapper.querySelector('.price-table__scroll')) {
+                priceContainer.classList.add('price-table__container--scroll-hint');
+            } else {
+                priceContainer.classList.remove('price-table__container--scroll-hint');
+            }
+        }
 
         setTimeout(addCallbackForms, 10);
 
