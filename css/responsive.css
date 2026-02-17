@@ -137,10 +137,6 @@
         font-size: 15px;
     }
 
-    .discount__title {
-        font-size: 32px;
-    }
-
     .services-grid__container {
         max-width: 960px;
     }
@@ -405,19 +401,6 @@
         gap: 30px;
     }
 
-    .discount {
-        padding: 50px 0;
-    }
-
-    .discount__grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .discount__right {
-        padding-top: 0;
-    }
-
     .services-grid {
         padding: 50px 0 50px;
     }
@@ -672,19 +655,6 @@
     .objects__image {
         width: 189px;
         height: 168px;
-    }
-
-    .discount__title {
-        font-size: 30px;
-    }
-
-    .discount__form {
-        flex-direction: column;
-    }
-
-    .discount__input,
-    .discount__button {
-        width: 100%;
     }
 
     .services-grid__title {
@@ -1002,38 +972,6 @@
 
     .objects__list {
         grid-column: 2;
-    }
-
-    .discount {
-        padding: 40px 0;
-    }
-
-    .discount__bg {
-        background-position: center center !important;
-        background-size: cover !important;
-        width: 100% !important;
-        left: 0 !important;
-    }
-
-    .discount__title {
-        font-size: 28px;
-        text-align: center;
-    }
-
-    .discount__timer-block {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .discount__timer {
-        font-size: 23px;
-    }
-
-    .discount__privacy {
-        text-align: center;
-        font-size: 11px;
-        line-height: 1.45;
     }
 
     .services-grid {
@@ -3087,13 +3025,6 @@
 @media (max-width: 639px) {
     .price-table__row--additional .price-table__price {
         text-align: center !important;
-    }
-}
-
-@media (max-width: 767px) {
-    .discount__bg {
-        background-position: center center !important;
-        background-size: cover !important;
     }
 }
 

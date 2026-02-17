@@ -366,41 +366,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initReviewsSlider();
 
-    function initDiscountTimer() {
-        const timerElement = document.getElementById('discount-timer');
-        if (!timerElement) return;
-
-        const now = new Date();
-        const endOfDay = new Date(now);
-        endOfDay.setHours(23, 59, 59, 999);
-
-        function updateTimer() {
-            const now = new Date();
-            const timeLeft = endOfDay - now;
-
-            if (timeLeft <= 0) {
-                endOfDay.setDate(endOfDay.getDate() + 1);
-                return;
-            }
-
-            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            const formattedTime =
-                String(hours).padStart(2, '0') + ' : ' +
-                String(minutes).padStart(2, '0') + ' : ' +
-                String(seconds).padStart(2, '0');
-
-            timerElement.textContent = formattedTime;
-        }
-
-        updateTimer();
-        setInterval(updateTimer, 1000);
-    }
-
-    initDiscountTimer();
-
     function addCallbackForms() {
         const formTemplate = document.querySelector('.callback-form-template');
         if (!formTemplate) return;
@@ -629,14 +594,6 @@ document.addEventListener('DOMContentLoaded', function() {
         heroForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             await handleFormSubmit(this, 'Главная форма (шапка сайта)');
-        });
-    }
-
-    const discountForm = document.querySelector('.discount__form');
-    if (discountForm) {
-        discountForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            await handleFormSubmit(this, 'Форма со скидкой 25%');
         });
     }
 
